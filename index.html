@@ -509,8 +509,13 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <div class="ping-stats" id="ping-github">
-                        <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <div class="ping-stats" id="ping-github">
+                            <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                        </div>
+                        <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-github" style="font-weight: 600;">Tiada (Stabil)</span>
+                        </div>
                     </div>
                     <div class="action-btns">
                         <button class="mini-btn" onclick="pingService('github')">
@@ -541,8 +546,13 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <div class="ping-stats" id="ping-cloudflare">
-                        <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <div class="ping-stats" id="ping-cloudflare">
+                            <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                        </div>
+                        <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-cloudflare" style="font-weight: 600;">Tiada (Stabil)</span>
+                        </div>
                     </div>
                     <div class="action-btns">
                         <button class="mini-btn" onclick="pingService('cloudflare')">
@@ -573,8 +583,13 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <div class="ping-stats" id="ping-supabase">
-                        <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <div class="ping-stats" id="ping-supabase">
+                            <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                        </div>
+                        <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-supabase" style="font-weight: 600;">Tiada (Stabil)</span>
+                        </div>
                     </div>
                     <div class="action-btns">
                         <button class="mini-btn" onclick="pingService('supabase')">
@@ -585,7 +600,7 @@
                         </a>
                     </div>
                 </div>
-           
+            </div>
 
             <!-- Google Gemini -->
             <div class="status-card" id="card-gemini" data-state="operational">
@@ -605,8 +620,13 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <div class="ping-stats" id="ping-gemini">
-                        <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <div class="ping-stats" id="ping-gemini">
+                            <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                        </div>
+                        <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-gemini" style="font-weight: 600;">Tiada (Stabil)</span>
+                        </div>
                     </div>
                     <div class="action-btns">
                         <button class="mini-btn" onclick="pingService('gemini')">
@@ -637,8 +657,13 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <div class="ping-stats" id="ping-chatgpt">
-                        <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <div class="ping-stats" id="ping-chatgpt">
+                            <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                        </div>
+                        <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-chatgpt" style="font-weight: 600;">Tiada (Stabil)</span>
+                        </div>
                     </div>
                     <div class="action-btns">
                         <button class="mini-btn" onclick="pingService('chatgpt')">
@@ -669,8 +694,13 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <div class="ping-stats" id="ping-deepseek">
-                        <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                    <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                        <div class="ping-stats" id="ping-deepseek">
+                            <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
+                        </div>
+                        <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-deepseek" style="font-weight: 600;">Tiada (Stabil)</span>
+                        </div>
                     </div>
                     <div class="action-btns">
                         <button class="mini-btn" onclick="pingService('deepseek')">
@@ -682,7 +712,6 @@
                     </div>
                 </div>
             </div>
- </div>
 
         </div>
 
@@ -719,6 +748,42 @@
 
     <script>
         // Status Monitor Dashboard 👈 2026-11-05 - Modern system check tool
+
+        // --- Downtime History Management ---
+        function getDowntimeHistory() {
+            try {
+                const data = localStorage.getItem('service_downtime_history');
+                return data ? JSON.parse(data) : {};
+            } catch(e) {
+                return {};
+            }
+        }
+
+        function saveDowntimeHistory(history) {
+            try {
+                localStorage.setItem('service_downtime_history', JSON.stringify(history));
+            } catch(e) {}
+        }
+
+        function updateDowntimeUI() {
+            const history = getDowntimeHistory();
+            for (const [key, timeStr] of Object.entries(history)) {
+                const el = document.getElementById(`down-${key}`);
+                if (el) {
+                    el.textContent = timeStr;
+                    el.style.color = 'var(--status-outage)';
+                }
+            }
+        }
+
+        function recordServiceDown(serviceKey) {
+            const history = getDowntimeHistory();
+            const now = new Date();
+            const formatted = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            history[serviceKey] = formatted;
+            saveDowntimeHistory(history);
+            updateDowntimeUI();
+        }
 
         // Theme Switcher State
         function setTheme(themeName) {
@@ -862,6 +927,7 @@
 
         // Run Initial Auto-Check on Page Load
         window.onload = function() {
+            updateDowntimeUI();
             addLog("Application initialized.");
             setTimeout(() => {
                 runFullDiagnostic();
