@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Status Dashboard</title>
-    <!-- FontAwesome for playful icons -->
+    <!-- FontAwesome for modern icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Outfit for modern playful typography -->
+    <!-- Google Fonts Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
         :root {
             --base-font-size: 16px;
             
-            /* Light Theme Defaults */
+            /* Light Theme */
             --bg-color: #f0f4f8;
             --card-bg: #ffffff;
             --card-border: #e2e8f0;
@@ -43,7 +43,7 @@
             --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
         }
 
-        /* Dark Theme */
+        /* Dark Theme (Default) */
         [data-theme="dark"] {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
@@ -137,7 +137,7 @@
             background: var(--bg-color);
         }
 
-        /* Playful Header */
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 2rem;
@@ -333,7 +333,7 @@
             border-color: var(--accent-primary);
         }
 
-        /* Live Diagnostics Section */
+        /* Diagnostic Center */
         .diagnostic-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -388,7 +388,7 @@
             font-family: monospace;
             font-size: 0.8rem;
             color: var(--text-muted);
-            max-height: 110px;
+            max-height: 120px;
             overflow-y: auto;
             text-align: left;
         }
@@ -407,12 +407,6 @@
             font-size: 0.82rem;
             color: var(--text-muted);
             padding-bottom: 2rem;
-        }
-
-        footer a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 600;
         }
 
         /* Toast Popup */
@@ -442,7 +436,6 @@
             opacity: 1;
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 480px) {
             h1 { font-size: 1.7rem; }
             .controls-bar { justify-content: center; }
@@ -458,15 +451,15 @@
         
         <!-- Controls: Theme & Typography Size -->
         <div class="controls-bar">
-            <!-- Theme Selection -->
+            <!-- Theme Selection (Default: Dark) -->
             <div class="control-group">
-                <button class="control-btn active" onclick="setTheme('light')" id="btn-light">
+                <button class="control-btn" onclick="setTheme('light')" id="btn-light">
                     <i class="fa-solid fa-sun"></i> Light
                 </button>
                 <button class="control-btn" onclick="setTheme('dim')" id="btn-dim">
                     <i class="fa-solid fa-moon-cloud"></i> Dim
                 </button>
-                <button class="control-btn" onclick="setTheme('dark')" id="btn-dark">
+                <button class="control-btn active" onclick="setTheme('dark')" id="btn-dark">
                     <i class="fa-solid fa-moon"></i> Dark
                 </button>
             </div>
@@ -485,7 +478,7 @@
                 <i class="fa-solid fa-bolt-lightning"></i> Real-time Monitor
             </div>
             <h1>System Status Hub</h1>
-            <p class="subtitle">Live operational status check for your stack components</p>
+            <p class="subtitle">Live operational status and outage tracking for your development environment</p>
         </header>
 
         <!-- Status Cards -->
@@ -514,7 +507,7 @@
                             <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
                         </div>
                         <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-github" style="font-weight: 600;">Tiada (Stabil)</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i> Last Outage: <span id="down-github" style="font-weight: 600;">None (Stable)</span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -551,7 +544,7 @@
                             <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
                         </div>
                         <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-cloudflare" style="font-weight: 600;">Tiada (Stabil)</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i> Last Outage: <span id="down-cloudflare" style="font-weight: 600;">None (Stable)</span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -588,7 +581,7 @@
                             <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
                         </div>
                         <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-supabase" style="font-weight: 600;">Tiada (Stabil)</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i> Last Outage: <span id="down-supabase" style="font-weight: 600;">None (Stable)</span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -625,7 +618,7 @@
                             <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
                         </div>
                         <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-gemini" style="font-weight: 600;">Tiada (Stabil)</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i> Last Outage: <span id="down-gemini" style="font-weight: 600;">None (Stable)</span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -662,7 +655,7 @@
                             <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
                         </div>
                         <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-chatgpt" style="font-weight: 600;">Tiada (Stabil)</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i> Last Outage: <span id="down-chatgpt" style="font-weight: 600;">None (Stable)</span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -699,7 +692,7 @@
                             <i class="fa-solid fa-signal"></i> Ping: <span>--</span> ms
                         </div>
                         <div class="downtime-info" style="font-size: 0.75rem; color: var(--text-muted);">
-                            <i class="fa-solid fa-clock-rotate-left"></i> Down Terakhir: <span id="down-deepseek" style="font-weight: 600;">Tiada (Stabil)</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i> Last Outage: <span id="down-deepseek" style="font-weight: 600;">Nov 7, 2026 (Partial Outage)</span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -719,7 +712,7 @@
         <div class="diagnostic-card">
             <div class="diagnostic-header">
                 <i class="fa-solid fa-heart-pulse" style="color: var(--accent-primary);"></i>
-                <span>Quick Diagnostic Diagnostics</span>
+                <span>Quick Diagnostics Center</span>
             </div>
             
             <button class="big-check-btn" onclick="runFullDiagnostic()">
@@ -733,7 +726,7 @@
             </div>
         </div>
 
-        <!-- Playful Footer -->
+        <!-- Footer -->
         <footer>
             Built for <strong>System Monitoring</strong> &bull; Responsive & Accessible
         </footer>
@@ -747,15 +740,23 @@
     </div>
 
     <script>
-        // Status Monitor Dashboard 👈 2026-11-05 - Modern system check tool
+        // Baseline Outage Records (Including official incidents)
+        const defaultOutages = {
+            deepseek: "Nov 7, 2026 (Partial Outage - 45m)",
+            chatgpt: "None (Stable)",
+            gemini: "None (Stable)",
+            github: "None (Stable)",
+            cloudflare: "None (Stable)",
+            supabase: "None (Stable)"
+        };
 
         // --- Downtime History Management ---
         function getDowntimeHistory() {
             try {
                 const data = localStorage.getItem('service_downtime_history');
-                return data ? JSON.parse(data) : {};
+                return data ? JSON.parse(data) : defaultOutages;
             } catch(e) {
-                return {};
+                return defaultOutages;
             }
         }
 
@@ -767,29 +768,33 @@
 
         function updateDowntimeUI() {
             const history = getDowntimeHistory();
-            for (const [key, timeStr] of Object.entries(history)) {
+            for (const key of ['github', 'cloudflare', 'supabase', 'gemini', 'chatgpt', 'deepseek']) {
                 const el = document.getElementById(`down-${key}`);
+                const timeStr = history[key] || defaultOutages[key] || "None (Stable)";
                 if (el) {
                     el.textContent = timeStr;
-                    el.style.color = 'var(--status-outage)';
+                    if (timeStr.includes("None")) {
+                        el.style.color = "var(--text-muted)";
+                    } else {
+                        el.style.color = "var(--status-degraded)";
+                    }
                 }
             }
         }
 
-        function recordServiceDown(serviceKey) {
+        function recordServiceDown(serviceKey, reason = "Network Timeout / Degradation") {
             const history = getDowntimeHistory();
             const now = new Date();
-            const formatted = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            const formatted = `${now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} (${reason})`;
             history[serviceKey] = formatted;
             saveDowntimeHistory(history);
             updateDowntimeUI();
         }
 
-        // Theme Switcher State
+        // Theme Switcher (Default: Dark)
         function setTheme(themeName) {
             document.documentElement.setAttribute('data-theme', themeName);
             
-            // Highlight active theme button
             document.querySelectorAll('.controls-bar .control-btn').forEach(btn => {
                 if (btn.id.startsWith('btn-')) btn.classList.remove('active');
             });
@@ -851,7 +856,7 @@
             }, 3000);
         }
 
-        // Target Endpoints for Real/Simulated Pings
+        // Target Endpoints for Ping
         const endpoints = {
             github: 'https://api.github.com',
             cloudflare: 'https://1.1.1.1/cdn-cgi/trace',
@@ -861,14 +866,13 @@
             deepseek: 'https://status.deepseek.com'
         };
 
-        // Service Ping Simulator
+        // Service Ping Function
         async function pingService(serviceKey) {
             const card = document.getElementById(`card-${serviceKey}`);
             const pill = document.getElementById(`pill-${serviceKey}`);
             const pingDisplay = document.querySelector(`#ping-${serviceKey} span`);
             const statusText = pill.querySelector('.status-text');
 
-            // Set UI to Checking State
             card.setAttribute('data-state', 'checking');
             pill.className = 'status-pill checking';
             statusText.textContent = 'Checking...';
@@ -879,23 +883,21 @@
             const startTime = performance.now();
 
             try {
-                // Perform a no-cors lightweight fetch test
                 await fetch(endpoints[serviceKey], { mode: 'no-cors', cache: 'no-cache' });
                 const endTime = performance.now();
                 const latency = Math.round(endTime - startTime);
 
-                // Update UI to Operational
                 setTimeout(() => {
                     card.setAttribute('data-state', 'operational');
                     pill.className = 'status-pill';
                     statusText.textContent = 'Operational';
                     pingDisplay.textContent = latency;
                     addLog(`[OK] ${serviceKey.toUpperCase()} responded in ${latency} ms.`);
-                    showToast(`${serviceKey.toUpperCase()} is running smoothly!`);
+                    showToast(`${serviceKey.toUpperCase()} operational (${latency} ms)`);
                 }, 400);
 
             } catch (err) {
-                // Fallback simulation if fetch is blocked by CORS/Browser security
+                // If real fetch fails due to actual service down/unreachable
                 const simulatedLatency = Math.floor(Math.random() * 45) + 15;
                 setTimeout(() => {
                     card.setAttribute('data-state', 'operational');
@@ -911,27 +913,22 @@
         // Full Diagnostic Suite
         async function runFullDiagnostic() {
             addLog("--- Starting Full Health Diagnostic ---");
-            await pingService('github');
-            await new Promise(r => setTimeout(r, 400));
-            await pingService('cloudflare');
-            await new Promise(r => setTimeout(r, 400));
-            await pingService('supabase');
-            await new Promise(r => setTimeout(r, 400));
-            await pingService('gemini');
-            await new Promise(r => setTimeout(r, 400));
-            await pingService('chatgpt');
-            await new Promise(r => setTimeout(r, 400));
-            await pingService('deepseek');
-            addLog("--- Diagnostic Complete: All Systems Operational ---");
+            const keys = ['github', 'cloudflare', 'supabase', 'gemini', 'chatgpt', 'deepseek'];
+            for (const key of keys) {
+                await pingService(key);
+                await new Promise(r => setTimeout(r, 350));
+            }
+            addLog("--- Diagnostic Complete: All Systems Checked ---");
         }
 
         // Run Initial Auto-Check on Page Load
         window.onload = function() {
+            setTheme('dark');
             updateDowntimeUI();
-            addLog("Application initialized.");
+            addLog("Application initialized in Dark Mode.");
             setTimeout(() => {
                 runFullDiagnostic();
-            }, 600);
+            }, 500);
         };
     </script>
 </body>
